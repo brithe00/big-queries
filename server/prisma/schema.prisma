@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id              Int      @id @default(autoincrement())
+  name            String
+  category        String
+  price           Float
+  brand           String
+  color           String
+  size            String   // Example: "S", "M", "L", "XL"
+  weight          Float    // Example: 1.5 (in kg)
+  description     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  inStock         Boolean
+  rating          Float    // Example: 4.5
+  reviewsCount    Int      // Example: 123
+  sku             String   // Stock Keeping Unit, unique identifier
+  discountPercent Int?     // Example: 20 (for 20% discount)
+  isFeatured      Boolean  @default(false) // Whether the product is featured
+  tags            String[] // Array of tags: ["electronics", "smartphone"]
+}
+
